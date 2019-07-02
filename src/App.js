@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import todos from './api/todos';
+import users from './api/users';
+
+import TodoList from "./components/TodoList"
+
+console.log(todos);
+console.log(users);
+
+
+const todosWithUser = todos.map(todo => { // добавили в каждую todo нужного user
+  return {
+    ...todo,
+    user: users.find(user => user.id === todo.userId)
+  }
+}
+)
+
+function App() { // в приложении передаём отфильтрованный массив TodoList
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Static list of todos</h1>
+      <TodoList 
+        todos={todosWithUser}
+      />
     </div>
   );
 }
