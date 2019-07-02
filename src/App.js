@@ -6,9 +6,7 @@ import users from './api/users';
 
 import TodoList from "./components/TodoList"
 
-console.log(todos);
-console.log(users);
-
+// For code review
 
 const todosWithUser = todos.map(todo => { // добавили в каждую todo нужного user
   return {
